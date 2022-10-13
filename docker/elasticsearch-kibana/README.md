@@ -1,5 +1,8 @@
 # elasticsearch-kibana
 
+参考: https://blog.csdn.net/boling_cavalry/article/details/125232858
+
+
 ### 进入docker目录
 ```
 $ cd ./document/docker/elasticsearch-kibana
@@ -10,22 +13,7 @@ $ cd ./document/docker/elasticsearch-kibana
 $ docker-compose up -d
 ```
 
-### 浏览器打开kibana
-```
-http://localhost:5601
-```
-
-### 进入elasticsearch容器
+### 进入容器
 ```
 $ docker container exec -it [containerID] /bin/bash
-```
-
-### 获取elasticsearch的kibana令牌
-```
-$ ./bin/elasticsearch-create-enrollment-token --scope kibana
-```
-
-### 设置账号密码
-```
-$ ./bin/elasticsearch-setup-passwords interactive
 ```
