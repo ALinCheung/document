@@ -37,4 +37,8 @@ node_modules
 yarn.lock
 package-lock.json
 
-persistence/
+### docker 持久化 ###
+/docker/elasticsearch/persistence/
+/docker/webserver/mysql/volumes/
+/docker/webserver/nacos/standalone-logs/
+/docker/webserver/redis/data/
