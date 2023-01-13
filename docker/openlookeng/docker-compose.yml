@@ -1,0 +1,19 @@
+version: "2"
+services:
+  # 集群
+  coordinator:
+    image: openlookeng:1.9.0
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./docker/coordinator:/usr/lib/hetu/default
+      - ./persistence/datac:/var/lib/hetu/data
+  worker:
+    image: openlookeng:1.9.0
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./docker/worker:/usr/lib/hetu/default
+      - ./persistence/dataw:/var/lib/hetu/data
+    depends_on:
+      - coordinator
