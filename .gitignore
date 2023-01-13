@@ -38,7 +38,8 @@ yarn.lock
 package-lock.json
 
 ### docker 持久化 ###
+/docker/redis/data/
+/docker/nacos/mysql/volumes/
+/docker/nacos/nacos/standalone-logs/
 /docker/elasticsearch/persistence/
-/docker/webserver/mysql/volumes/
-/docker/webserver/nacos/standalone-logs/
-/docker/webserver/redis/data/
+/docker/openlookeng/persistence/
