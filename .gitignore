@@ -38,6 +38,7 @@ yarn.lock
 package-lock.json
 
 ### docker 持久化 ###
+/docker/ldap/data/
 /docker/redis/data/
 /docker/nacos/mysql/volumes/
 /docker/nacos/nacos/standalone-logs/

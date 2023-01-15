@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  ldap:
+    image: osixia/openldap:1.4.0
+    volumes:
+      - ./data/database:/var/lib/ldap
+      - ./data/config:/etc/ldap/slapd.d
+    environment:
+      - LDAP_ORGANISATION=xyz
+      - LDAP_DOMAIN=xyz.com
+      - LDAP_ADMIN_PASSWORD=123456
+    ports:
+      - "389:389"
+  ldap-admin:
+    image: osixia/phpldapadmin
+    environment:
+      - PHPLDAPADMIN_HTTPS=false
+      - PHPLDAPADMIN_LDAP_HOSTS=localhost
+    ports:
+      - "808:80"
+    depends_on:
+      - ldap
