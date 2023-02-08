@@ -92,16 +92,19 @@ WORK_DIR="$(mktemp -d)"
 cp ../hetu-server/target/hetu-server-${HETU_VERSION}.tar.gz ${WORK_DIR}
 tar -C ${WORK_DIR} -xzf ${WORK_DIR}/hetu-server-${HETU_VERSION}.tar.gz
 rm ${WORK_DIR}/hetu-server-${HETU_VERSION}.tar.gz
+sed -i 's/\r//' bin/run-hetu
+sed -i 's/\r//' bin/openlk
+sed -i 's/\r//' bin/shutdown-hetu
 cp -R bin default ${WORK_DIR}/hetu-server-${HETU_VERSION}
 
 cp ../presto-cli/target/hetu-cli-${HETU_VERSION}-executable.jar ${WORK_DIR}/hetu-server-${HETU_VERSION}
 cp bin/openlk ${WORK_DIR}
 umask "${save_mask}"
 
-docker build ${WORK_DIR} -f Dockerfile --build-arg "OPENLK_VERSION=${HETU_VERSION}" --build-arg "BASE_IMAGE=${BASE_IMAGE}" -t "openlookeng:${TAG}"
+docker build ${WORK_DIR} -f Dockerfile --build-arg "OPENLK_VERSION=${HETU_VERSION}" --build-arg "BASE_IMAGE=${BASE_IMAGE}" -t "openlookeng:${HETU_VERSION}"
 
 # Source common testing functions
 . container-test.sh
 
 # one parameter: image name and flag to run hetu as coordinator
-test_container "openlookeng:${TAG} -t coordinator"
+test_container "openlookeng:${HETU_VERSION} -t coordinator"
